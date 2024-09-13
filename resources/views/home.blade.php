@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barta</title>
-</head>
-<body>
-    <h2>Welcome to Barta</h2>
-</body>
-</html>
+@extends('layouts.app')
+
+@section('content')
+
+<div class="text-center p-12 border border-gray-800 rounded-xl">
+    <h1 class="text-3xl justify-center items-center">Welcome to Barta!</h1>
+</div>
+
+@endsection
