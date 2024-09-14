@@ -144,7 +144,7 @@
             <label
                 for="password_confirmation"
                 class="block text-sm font-medium leading-6 text-gray-900"
-                >Confirm Password</label
+                >Re-type Password</label
             >
             <div class="mt-2">
                 <input

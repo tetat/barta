@@ -21,7 +21,7 @@ class SessionController extends Controller
         if (Auth::attempt($request->validated())) {
             $request->session()->regenerate();
  
-            return to_route('home');
+            return redirect()->intended('/');
         }
         
         return back()->withError('The provided credentials do not match our records.');

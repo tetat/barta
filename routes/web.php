@@ -8,20 +8,21 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'home', ['title' => 'Home'])->name('home');
 
 Route::middleware('guest')->group(function () {
-    Route::get('login', [SessionController::class, 'create'])->name('login');
+    Route::get('login', [
+        SessionController::class, 'create'
+    ])->name('login');
     Route::post('login', [SessionController::class, 'store']);
     
     Route::get('register', [
         RegisterController::class, 'create'
     ])->name('register');
-    Route::post('register', [
-        RegisterController::class, 'store'
-    ]);
+    Route::post('register', [RegisterController::class, 'store']);
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('/user/show', [UserController::class, 'show'])->name('user.show');
     Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::patch('/user/{id}/update', [UserController::class, 'update'])->name('user.update');
 
     Route::post('logout', [SessionController::class, 'destroy'])->name('logout');
 });
