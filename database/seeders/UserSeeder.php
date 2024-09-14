@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
                 'lastName' => fake()->lastName(),
                 'username' => fake()->userName(),
                 'email' => fake()->email(),
+                'bio' => fake()->realText(30),
                 'gender' => fake()->randomElement(['male', 'female', 'other']),
                 'password' => Hash::make('123456789'),
                 'created_at' => now(),

@@ -58,14 +58,16 @@
                         id="user-menu-item-1"
                         >Edit Profile</a
                         >
-                        <a
-                        href="#"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        role="menuitem"
-                        tabindex="-1"
-                        id="user-menu-item-2"
-                        >Sign out</a
-                        >
+                        <div 
+                            class="block px-4 py-2 hover:bg-gray-100"
+                            role="menuitem"
+                            tabindex="-1"
+                            id="user-menu-item-2">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="text-red-800 text-sm">Sign out</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -145,10 +147,10 @@
                     </div>
                     <div class="ml-3">
                     <div class="text-base font-medium text-gray-800">
-                        Ahmed Shamim Hasan Shaon
+                        {{ auth()->user()->firstName . ' ' . auth()->user()->lastName }}
                     </div>
                     <div class="text-sm font-medium text-gray-500">
-                        shaon@shamim.com
+                        {{ auth()->user()->email }}
                     </div>
                     </div>
                 </div>
@@ -163,11 +165,13 @@
                     class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                     >Edit Profile</a
                     >
-                    <a
-                    href="#"
-                    class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
-                    >Sign out</a
+                    <div class="block px-4 py-2 hover:bg-gray-100"
                     >
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="text-red-800 text-base font-medium">Sign out</button>
+                        </form>
+                    </div>
                 </div>
             @endauth
 

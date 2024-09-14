@@ -27,8 +27,14 @@ class SessionController extends Controller
         return back()->withError('The provided credentials do not match our records.');
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
-
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+     
+        $request->session()->regenerateToken();
+     
+        return to_route('home');
     }
 }

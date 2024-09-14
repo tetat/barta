@@ -22,4 +22,6 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/user/show', [UserController::class, 'show'])->name('user.show');
     Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
+
+    Route::post('logout', [SessionController::class, 'destroy'])->name('logout');
 });
