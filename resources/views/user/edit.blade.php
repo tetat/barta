@@ -27,8 +27,8 @@
                 <div class="mt-2">
                 <input
                     type="text"
-                    name="first-name"
-                    id="first-name"
+                    name="firstName"
+                    id="firstName"
                     autocomplete="given-name"
                     value="Ahmed Shamim Hasan"
                     class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
@@ -44,8 +44,8 @@
                 <div class="mt-2">
                 <input
                     type="text"
-                    name="last-name"
-                    id="last-name"
+                    name="lastName"
+                    id="lastName"
                     value="Shaon"
                     autocomplete="family-name"
                     class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
@@ -71,6 +71,22 @@
 
             <div class="col-span-full">
                 <label
+                for="gender"
+                class="block text-sm font-medium leading-6 text-gray-900"
+                >Gender</label
+                >
+                <div class="mt-2">
+                    <select id="gender" name="gender" class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6">
+                        <option selected>Select your gender</option>
+                        <option @selected( old('country') === 'male' ) value="male">Male</option>
+                        <option @selected( old('country') === 'female' ) value="female">Female</option>
+                        <option @selected( old('country') === 'other' ) value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-span-full">
+                <label
                 for="password"
                 class="block text-sm font-medium leading-6 text-gray-900"
                 >Password</label
@@ -80,6 +96,7 @@
                     type="password"
                     name="password"
                     id="password"
+                    placeholder="Type your password"
                     autocomplete="password"
                     class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
                 </div>

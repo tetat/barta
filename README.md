@@ -16,7 +16,7 @@ Barta is a minimalist social platform designed to bring people together through 
 First, clone this repository:
 
 ```bash
-git clone https://github.com/tetat/barta/tree/assignment-1
+git git clone -b assignment-1 https://github.com/tetat/barta.git
 ```
 
 Switch to the repository folder:

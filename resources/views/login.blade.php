@@ -6,17 +6,20 @@
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <a
         href="./index.html"
-        class="text-center text-6xl font-bold text-gray-900"
+        class="text-center text-4xl font-bold text-gray-900"
         ><h1>Barta</h1></a
     >
 
     <h1
-        class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        class="mt-10 text-center text-xl font-bold leading-9 tracking-tight text-gray-900">
         Sign in to your account
     </h1>
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        @if (session()->has('success'))
+            <p class="text-green-800 font-bold bg-gray-300 text-center p-2 rounded-md shadow">{{ session()->get('success') }}</p>
+        @endif
     <form
         class="space-y-6"
         action="#"
@@ -78,7 +81,7 @@
     <p class="mt-10 text-center text-sm text-gray-500">
         Don't have an account yet?
         <a
-        href="./register.html"
+        href="{{ route('register.create') }}"
         class="font-semibold leading-6 text-black hover:text-black"
         >Sign Up</a
         >

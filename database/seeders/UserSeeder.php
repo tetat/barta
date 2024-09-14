@@ -16,9 +16,11 @@ class UserSeeder extends Seeder
     {
         for ($i = 0; $i < 10; $i++) {
             DB::table('users')->insert([
-                'name' => fake()->name(),
+                'firstName' => fake()->firstName(),
+                'lastName' => fake()->lastName(),
                 'username' => fake()->userName(),
                 'email' => fake()->email(),
+                'gender' => fake()->randomElement(['male', 'female', 'other']),
                 'password' => Hash::make('123456789'),
                 'created_at' => now(),
                 'updated_at' => now(),

@@ -7,5 +7,20 @@ use Illuminate\Http\Request;
 
 class SessionController extends Controller
 {
-    //
+    public function create()
+    {
+        return view('login', [
+            'title' => 'Login',
+        ]);
+    }
+
+    public function store()
+    {
+
+    }
+
+    public function destroy()
+    {
+
+    }
 }
