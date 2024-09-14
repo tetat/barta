@@ -21,7 +21,7 @@
         @enderror
     <form
         class="space-y-2"
-        action="{{ route('register.store') }}"
+        action="{{ route('register') }}"
         method="POST" novalidate>
 
         @csrf

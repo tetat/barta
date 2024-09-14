@@ -3,24 +3,23 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SessionController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home', ['title' => 'Home'])->name('home');
 
 Route::middleware('guest')->group(function () {
-    Route::get('/login/create', [SessionController::class, 'create'])->name('login');
-    Route::post('/login/store', [SessionController::class, 'store'])->name('login.store');
+    Route::get('login', [SessionController::class, 'create'])->name('login');
+    Route::post('login', [SessionController::class, 'store']);
     
-    Route::get('/register/create', [
+    Route::get('register', [
         RegisterController::class, 'create'
-    ])->name('register.create');
-    Route::post('/register/store', [
+    ])->name('register');
+    Route::post('register', [
         RegisterController::class, 'store'
-    ])->name('register.store');
+    ]);
 });
 
-Route::middleware('guest')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/user/show', [UserController::class, 'show'])->name('user.show');
     Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
 });
