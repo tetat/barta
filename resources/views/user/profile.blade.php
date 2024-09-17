@@ -11,8 +11,8 @@
 
         <!-- User Meta -->
         <div>
-        <h1 class="font-bold md:text-2xl">{{ auth()->user()->firstName . ' ' . auth()->user()->lastName }}</h1>
-        <p class="text-gray-700">{{ auth()->user()->bio }}</p>
+        <h1 class="font-bold md:text-2xl">{{ $user->firstName . ' ' . $user->lastName }}</h1>
+        <p class="text-gray-700">{{ $user->bio }}</p>
         </div>
         <!-- / User Meta -->
     </div>
@@ -21,7 +21,7 @@
 
     <!-- Edit Profile Button (Only visible to the profile owner) -->
     <a
-        href="{{ route('user.edit') }}"
+        href="{{ route('user.edit', $user->id) }}"
         type="button"
         class="-m-2 flex gap-2 items-center rounded-full px-4 py-2 font-semibold bg-gray-100 hover:bg-gray-200 text-gray-700">
         <svg

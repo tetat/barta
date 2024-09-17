@@ -14,7 +14,7 @@
 @enderror
 
 
-<form action="{{ route('user.update', auth()->user()->id) }}" method="POST" novalidate>
+<form action="{{ route('user.update', $id) }}" method="POST" novalidate>
     
     @csrf
     @method('PATCH')
