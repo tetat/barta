@@ -1,28 +1,36 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\SessionController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\UserController;
 
 Route::view('/', 'home', ['title' => 'Home'])->name('home');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [
-        SessionController::class, 'create'
+        AuthenticatedSessionController::class, 'create'
     ])->name('login');
-    Route::post('login', [SessionController::class, 'store']);
+    Route::post('login', [AuthenticatedSessionController::class, 'store']);
     
     Route::get('register', [
-        RegisterController::class, 'create'
+        RegisteredUserController::class, 'create'
     ])->name('register');
-    Route::post('register', [RegisterController::class, 'store']);
+    Route::post('register', [RegisteredUserController::class, 'store']);
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
-    Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
-    Route::patch('/user/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
-    Route::post('logout', [SessionController::class, 'destroy'])->name('logout');
+    Route::get('/users/{id}', [UserController::class, 'show'])
+        ->middleware('checkUserExists')
+        ->name('users.show');
 });
+
+Route::post('logout', [
+    AuthenticatedSessionController::class,
+    'destroy'
+])->middleware('auth')->name('logout');

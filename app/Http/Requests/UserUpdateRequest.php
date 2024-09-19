@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\CurrentPasswordRule;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UserUpdateRequest extends FormRequest
 {
@@ -24,9 +25,9 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'email' => 'required|email',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => ['required', 'email', Rule::unique('users')->ignore(Auth::user()->id)],
             'current_password' => ['required', new CurrentPasswordRule],
             'password' => 'nullable|confirmed|min:8',
             'gender' => ['required', Rule::in(['male', 'female', 'other'])],

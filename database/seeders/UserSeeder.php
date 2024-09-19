@@ -16,9 +16,9 @@ class UserSeeder extends Seeder
     {
         for ($i = 0; $i < 10; $i++) {
             DB::table('users')->insert([
-                'firstName' => fake()->firstName(),
-                'lastName' => fake()->lastName(),
-                'username' => fake()->userName(),
+                'first_name' => fake()->firstName(),
+                'last_name' => fake()->lastName(),
+                'user_name' => fake()->userName(),
                 'email' => fake()->email(),
                 'bio' => fake()->realText(30),
                 'gender' => fake()->randomElement(['male', 'female', 'other']),

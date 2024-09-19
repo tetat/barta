@@ -11,10 +11,10 @@
 
 @if (session()->has('error'))
     <p class="text-red-800 font-bold bg-gray-300 text-center p-2 rounded-md shadow">{{ session()->get('error') }}</p>
-@enderror
+@endif
 
 
-<form action="{{ route('user.update', $id) }}" method="POST" novalidate>
+<form action="{{ route('profile.update') }}" method="POST" novalidate>
     
     @csrf
     @method('PATCH')
@@ -45,13 +45,13 @@
                 <div class="mt-2">
                 <input
                     type="text"
-                    name="firstName"
-                    id="firstName"
+                    name="first_name"
+                    id="first_name"
                     autocomplete="given-name"
-                    value="{{ auth()->user()->firstName }}"
+                    value="{{ $user->first_name }}"
                     class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
                 </div>
-                @error('firstName')
+                @error('first_name')
                     <small class="text-red-700">{{$message}}</small>
                 @enderror
             </div>
@@ -65,13 +65,13 @@
                 <div class="mt-2">
                 <input
                     type="text"
-                    name="lastName"
-                    id="lastName"
-                    value="{{ auth()->user()->lastName }}"
+                    name="last_name"
+                    id="last_name"
+                    value="{{ $user->last_name }}"
                     autocomplete="family-name"
                     class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
                 </div>
-                @error('lastName')
+                @error('last_name')
                     <small class="text-red-700">{{$message}}</small>
                 @enderror
             </div>
@@ -88,7 +88,7 @@
                     name="email"
                     type="email"
                     autocomplete="email"
-                    value="{{ auth()->user()->email }}"
+                    value="{{ $user->email }}"
                     class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
                 </div>
                 @error('email')
@@ -105,9 +105,9 @@
                 <div class="mt-2">
                     <select id="gender" name="gender" class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6">
                         <option selected>Select your gender</option>
-                        <option @selected( auth()->user()->gender === 'male' ) value="male">Male</option>
-                        <option @selected( auth()->user()->gender === 'female' ) value="female">Female</option>
-                        <option @selected( auth()->user()->gender === 'other' ) value="other">Other</option>
+                        <option @selected( $user->gender === 'male' ) value="male">Male</option>
+                        <option @selected( $user->gender === 'female' ) value="female">Female</option>
+                        <option @selected( $user->gender === 'other' ) value="other">Other</option>
                     </select>
                 </div>
                 @error('gender')
@@ -191,7 +191,7 @@
                 id="bio"
                 name="bio"
                 rows="3"
-                class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6">{{ auth()->user()->bio }}</textarea
+                class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6">{{ $user->bio }}</textarea
                 >
                 @error('bio')
                     <small class="text-red-700">{{$message}}</small>

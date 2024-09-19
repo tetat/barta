@@ -2,58 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
     public function show(string $id)
     {
-        $user = DB::table('users')
-            ->select([
-                'id',
-                'firstName',
-                'lastName',
-                'email',
-                'bio'
-            ])->where('id', $id)
-            ->first();
+        $user = DB::table('users')->select([
+            'id',
+            'first_name',
+            'last_name',
+            'email',
+            'gender',
+            'bio',
+            'created_at'
+        ])->where('id', $id)->first();
 
         return view('user.profile', [
-            'title' => $user->firstName . ' ' . $user->lastName,
+            'title' => $user->first_name . ' ' . $user->last_name,
             'user' => $user,
         ]);
-    }
-
-    public function edit(string $id)
-    {
-        return view('user.edit', [
-            'title' => 'Edit',
-            'id' => $id,
-        ]);
-    }
-
-    public function update(UserUpdateRequest $request, string $id)
-    {
-        $data = $request->validated();
-
-        unset($data['current_password']);
-        $data['updated_at'] = now();
-
-        if (!$data['password']) {
-            unset($data['password']);
-        } else {
-            $data['password'] = Hash::make($data['password']);
-        }
-
-        if (DB::table('users')->where('id', $id)->update($data)) {
-            return back()->withSuccess(
-                'Your account has been updated successfully.'
-            );
-        }
-
-        return back()->withError('Update failed! Internal server error.');
     }
 }

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\SessionStoreRequest;
 
-class SessionController extends Controller
+class AuthenticatedSessionController extends Controller
 {
     public function create()
     {
@@ -16,7 +16,7 @@ class SessionController extends Controller
         ]);
     }
 
-    public function store(SessionStoreRequest $request)
+    public function store(LoginRequest $request)
     {
         if (Auth::attempt($request->validated())) {
             $request->session()->regenerate();

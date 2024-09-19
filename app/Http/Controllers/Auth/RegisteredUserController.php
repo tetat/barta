@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UserStoreRequest;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegisterRequest;
 
-class RegisterController extends Controller
+class RegisteredUserController extends Controller
 {
     public function create()
     {
@@ -16,7 +16,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function store(UserStoreRequest $request)
+    public function store(RegisterRequest $request)
     {
         $user = $request->validated();
 
