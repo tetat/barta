@@ -147,7 +147,7 @@
                     </div>
                     <div class="ml-3">
                     <div class="text-base font-medium text-gray-800">
-                        {{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}
+                        {{ auth()->user()->firstName . ' ' . auth()->user()->lastName }}
                     </div>
                     <div class="text-sm font-medium text-gray-500">
                         {{ auth()->user()->email }}

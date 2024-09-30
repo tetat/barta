@@ -14,9 +14,16 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        return view('user.profile', [
+        $posts = DB::table('posts')
+            ->join('users', 'posts.user_id', 'users.id')
+            ->select('posts.*', 'users.firstName', 'users.lastName', 'users.handle')
+            ->where('user_id', $user->id)
+            ->get();
+
+        return view('users.profile', [
             'title' => $user->first_name . ' ' . $user->last_name,
             'user' => $user,
+            'posts' => $posts
         ]);
     }
 
@@ -24,7 +31,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        return view('user.edit', [
+        return view('users.edit', [
             'title' => 'Edit',
             'user' => $user,
         ]);

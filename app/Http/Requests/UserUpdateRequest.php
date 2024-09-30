@@ -25,8 +25,8 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'firstName' => 'required',
+            'lastName' => 'required',
             'email' => ['required', 'email', Rule::unique('users')->ignore(Auth::user()->id)],
             'current_password' => ['required', new CurrentPasswordRule],
             'password' => 'nullable|confirmed|min:8',

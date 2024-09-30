@@ -29,22 +29,22 @@
         <!-- First Name -->
         <div>
             <label
-                for="first_name"
+                for="firstName"
                 class="block text-sm font-medium leading-6 text-gray-900"
                 >First Name</label
             >
             <div class="mt-2">
                 <input
-                id="first_name"
-                name="first_name"
+                id="firstName"
+                name="firstName"
                 type="text"
                 autocomplete="given-name"
                 placeholder="Write you first name"
-                value="{{ old('first_name') }}"
+                value="{{ old('firstName') }}"
                 required
                 class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
             </div>
-            @error('first_name')
+            @error('firstName')
                 <small class="text-red-700">{{$message}}</small>
             @enderror
         </div>
@@ -52,22 +52,22 @@
         <!-- Last Name -->
         <div>
             <label
-                for="last_name"
+                for="lastName"
                 class="block text-sm font-medium leading-6 text-gray-900"
                 >Last Name</label
             >
             <div class="mt-2">
                 <input
-                id="last_name"
-                name="last_name"
+                id="lastName"
+                name="lastName"
                 type="text"
                 autocomplete="family-name"
                 placeholder="Write you surname"
-                value="{{ old('last_name') }}"
+                value="{{ old('lastName') }}"
                 required
                 class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
             </div>
-            @error('last_name')
+            @error('lastName')
                 <small class="text-red-700">{{$message}}</small>
             @enderror
         </div>
@@ -75,22 +75,22 @@
         <!-- User Name -->
         <div>
             <label
-                for="user_name"
+                for="handle"
                 class="block text-sm font-medium leading-6 text-gray-900"
                 >User Name</label
             >
             <div class="mt-2">
                 <input
-                id="user_name"
-                name="user_name"
+                id="handle"
+                name="handle"
                 type="text"
-                autocomplete="user_name"
+                autocomplete="handle"
                 placeholder="alparslan1029"
-                value="{{ old('user_name') }}"
+                value="{{ old('handle') }}"
                 required
                 class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
             </div>
-            @error('user_name')
+            @error('handle')
                 <small class="text-red-700">{{$message}}</small>
             @enderror
         </div>
