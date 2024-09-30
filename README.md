@@ -4,19 +4,23 @@
 
 Barta is a minimalist social platform designed to bring people together through meaningful conversations and shared experiences. Whether you're looking to connect with friends, discover new communities, or express yourself creatively, Barta provides a space where everyone can engage, inspire, and be heard
 
-## Features for `assignment-1` branch
+## Features for `assignment-2` branch
 
--   User registration
--   User login
--   User profile view
--   User profile update
+- User registration
+- User login
+- User profile view
+- User profile update
+- Post create
+- Posts view
+- Post update
+- Post delete
 
 ## Installation
 
 First, clone this repository:
 
 ```bash
-git clone -b assignment-1 https://github.com/tetat/barta.git
+git clone -b assignment-2 https://github.com/tetat/barta.git
 ```
 
 Switch to the repository folder:

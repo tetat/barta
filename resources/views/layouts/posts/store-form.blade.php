@@ -22,6 +22,9 @@
                 placeholder="What's going on, {{ $user->firstName }}?" required></textarea>
             </div>
         </div>
+        @error('body')
+            <small class="text-red-700">{{ $message }}</small>
+        @enderror
     </div>
 
     <!-- Create Post Card Bottom -->

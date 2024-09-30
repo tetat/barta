@@ -2,6 +2,14 @@
 
 @section('content')
 
+    @if (session()->has('success'))
+        <p class="text-green-800 font-bold bg-gray-300 text-center p-2 rounded-md shadow">{{ session()->get('success') }}</p>
+    @endif
+
+    @if (session()->has('error'))
+        <p class="text-red-800 font-bold bg-gray-300 text-center p-2 rounded-md shadow">{{ session()->get('error') }}</p>
+    @enderror
+
     <!-- Cover Container -->
     <section
         class="bg-white border-2 p-8 border-gray-800 rounded-xl min-h-[400px] space-y-8 flex items-center flex-col justify-center">
