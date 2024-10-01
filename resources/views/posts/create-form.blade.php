@@ -32,15 +32,15 @@
         <!-- Card Bottom Action Buttons -->
         <div class="flex items-center justify-end">
 
-        <div>
-            <!-- Post Button -->
-            <button
-            type="submit"
-            class="-m-2 flex gap-2 text-xs items-center rounded-full px-4 py-2 font-semibold bg-gray-800 hover:bg-black text-white">
-            Post
-            </button>
-            <!-- /Post Button -->
-        </div>
+            <div>
+                <!-- Post Button -->
+                <button
+                type="submit"
+                class="-m-2 flex gap-2 text-xs items-center rounded-full px-4 py-2 font-semibold bg-gray-800 hover:bg-black text-white">
+                Post
+                </button>
+                <!-- /Post Button -->
+            </div>
         </div>
         <!-- /Card Bottom Action Buttons -->
     </div>

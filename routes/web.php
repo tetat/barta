@@ -31,7 +31,15 @@ Route::middleware('auth')->group(function () {
         ->middleware('checkUserExists')
         ->name('users.show');
 
-    Route::post('/posts/store', [PostController::class, 'store'])->name('posts.store');
+    Route::post('posts/store', [PostController::class, 'store'])->name('posts.store');
+    Route::middleware('authorizeOwnPost')->group(function () {
+        Route::get('posts/{id}/edit', [PostController::class, 'edit'])
+            ->name('posts.edit');
+        Route::post('posts/{id}', [PostController::class, 'update'])
+            ->name('posts.update');
+        Route::delete('posts/{id}', [PostController::class, 'destroy'])
+            ->name('posts.destroy');
+    });
 });
 
 Route::post('logout', [

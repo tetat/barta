@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AuthorizeOwnPost;
 use App\Http\Middleware\CheckUserExists;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -14,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->redirectUsersTo('/');
         $middleware->alias(['checkUserExists' => CheckUserExists::class]);
+        $middleware->alias(['authorizeOwnPost' => AuthorizeOwnPost::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

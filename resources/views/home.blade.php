@@ -16,13 +16,13 @@
 
     <!-- Barta Create Post Card -->
     @auth
-        @include('layouts.posts.store-form')
+        @include('posts.create-form')
     @endauth
     <!-- /Barta Create Post Card -->
 
     <!-- Newsfeed -->
 
-    @include('layouts.posts.newsfeed')
+    @include('posts.index')
 
     <!-- /Newsfeed -->
 

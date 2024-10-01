@@ -54,13 +54,13 @@
 
     <!-- Barta Create Post Card -->
     @if ($user->id === auth()->user()->id)
-        @include('layouts.posts.store-form')
+        @include('posts.create-form')
     @endif
     <!-- /Barta Create Post Card -->
 
     <!-- Newsfeed -->
     
-    @include('layouts.posts.newsfeed')
+    @include('posts.index')
 
     <!-- /Newsfeed -->
 
