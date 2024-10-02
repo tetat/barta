@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Services\PostService;
 
 class UserController extends Controller
 {
-    public function show(string $id)
+    public function show(string $id, PostService $postService)
     {
         $user = DB::table('users')
             ->select([
@@ -15,19 +16,12 @@ class UserController extends Controller
                 'firstName',
                 'lastName',
                 'handle',
-                'email',
-                'gender',
                 'bio',
-                'created_at'
             ])
             ->where('id', $id)
             ->first();
 
-        $posts = DB::table('posts')
-            ->join('users', 'posts.user_id', 'users.id')
-            ->select('posts.*', 'users.firstName', 'users.lastName', 'users.handle')
-            ->where('user_id', $id)
-            ->get();
+        $posts = $postService->getUserPosts($user->id);
 
         return view('users.profile', [
             'title' => $user->firstName . ' ' . $user->lastName,

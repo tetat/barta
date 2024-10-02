@@ -12,7 +12,7 @@ class HomeController extends Controller
         $posts = DB::table('posts')
             ->join('users', 'posts.user_id', 'users.id')
             ->select('posts.*', 'users.firstName', 'users.lastName', 'users.handle')
-            ->get();
+            ->paginate(10);
 
         return view('home', [
             'title' => 'Home',

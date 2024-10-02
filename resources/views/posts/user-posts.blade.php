@@ -15,22 +15,22 @@
                 <!-- User Info -->
                 <div class="text-gray-900 flex flex-col min-w-0 flex-1">
                     <a
-                    href="{{ route('users.show', $post->user_id) }}"
+                    href="{{ route('users.show', $user->id) }}"
                     class="hover:underline font-semibold line-clamp-1">
-                    {{ $post->firstName . ' ' . $post->lastName}}
+                    {{ $user->firstName . ' ' . $user->lastName}}
                     </a>
 
                     <a
-                    href="{{ route('users.show', $post->user_id) }}"
+                    href="{{ route('users.show', $user->id) }}"
                     class="hover:underline text-sm text-gray-500 line-clamp-1">
-                    {{ '@' . $post->handle }}
+                    {{ '@' . $user->handle }}
                     </a>
                 </div>
                 <!-- /User Info -->
                 </div>
 
                 @auth
-                    @if ($post->user_id === auth()->user()->id)
+                    @if ($user->id === auth()->user()->id)
                     <!-- Card Action Dropdown -->
                     <div class="flex flex-shrink-0 self-center" x-data="{ open: false }">
                         <div class="relative inline-block text-left">

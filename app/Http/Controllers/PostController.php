@@ -30,7 +30,7 @@ class PostController extends Controller
     public function edit(string $id)
     {
         $post = DB::table('posts')
-            ->select(['id', 'body', 'user_id', 'updated_at'])
+            ->select('id', 'body', 'user_id', 'updated_at')
             ->where('id', $id)
             ->first();
 

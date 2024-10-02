@@ -4,22 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserUpdateRequest;
+use App\Services\PostService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    public function show()
+    public function show(PostService $postService)
     {
         $user = Auth::user();
-
-        $posts = DB::table('posts')
-            ->join('users', 'posts.user_id', 'users.id')
-            ->select('posts.*', 'users.firstName', 'users.lastName', 'users.handle')
-            ->where('user_id', $user->id)
-            ->get();
-
+        $posts = $postService->getUserPosts($user->id);
+        
         return view('users.profile', [
             'title' => $user->first_name . ' ' . $user->last_name,
             'user' => $user,

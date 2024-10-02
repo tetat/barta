@@ -60,7 +60,7 @@
 
     <!-- Newsfeed -->
     
-    @include('posts.index')
+    @include('posts.user-posts')
 
     <!-- /Newsfeed -->
 
