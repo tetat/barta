@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserUpdateRequest;
+use App\Models\User;
 use App\Services\PostService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +39,6 @@ class ProfileController extends Controller
         $data = $request->validated();
 
         unset($data['current_password']);
-        $data['updated_at'] = now();
 
         if (!$data['password']) {
             unset($data['password']);
@@ -46,7 +46,8 @@ class ProfileController extends Controller
             $data['password'] = Hash::make($data['password']);
         }
 
-        if (DB::table('users')->where('id', Auth::user()->id)->update($data)) {
+        if (User::where('id', Auth::user()->id)
+            ->update($data)) {
             return back()->withSuccess(
                 'Your account has been updated successfully.'
             );

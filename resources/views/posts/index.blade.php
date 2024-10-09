@@ -10,6 +10,16 @@
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
                 <!-- User Avatar -->
+                    <div class="flex-shrink-0">
+                        @if ($post->user->getFirstMediaUrl)
+                            <img
+                            class="h-10 w-10 rounded-full object-cover"
+                            src="https://avatars.githubusercontent.com/u/61485238"
+                            alt="{{ $post->user->firstName }}" />
+                        @else
+                            <span class="text-xl rounded-full">{{ substr($post->user->firstName, 0, 1) . substr($post->user->lastName, 0, 1)}}</span>
+                         @endif
+                    </div>
                 <!-- /User Avatar -->
 
                 <!-- User Info -->
@@ -17,13 +27,13 @@
                     <a
                     href="{{ route('users.show', $post->user_id) }}"
                     class="hover:underline font-semibold line-clamp-1">
-                    {{ $post->firstName . ' ' . $post->lastName}}
+                    {{ $post->user->firstName . ' ' . $post->user->lastName}}
                     </a>
 
                     <a
                     href="{{ route('users.show', $post->user_id) }}"
                     class="hover:underline text-sm text-gray-500 line-clamp-1">
-                    {{ '@' . $post->handle }}
+                    {{ '@' . $post->user->handle }}
                     </a>
                 </div>
                 <!-- /User Info -->

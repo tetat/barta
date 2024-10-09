@@ -2,24 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Services\PostService;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
     public function show(string $id, PostService $postService)
     {
-        $user = DB::table('users')
-            ->select([
-                'id',
-                'firstName',
-                'lastName',
-                'handle',
-                'bio',
-            ])
-            ->where('id', $id)
-            ->first();
+        $user = User::find($id);
 
         $posts = $postService->getUserPosts($user->id);
 

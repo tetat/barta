@@ -11,6 +11,15 @@
             </div>
         </div>
 
+        <!-- Search input -->
+        <form action="" method="POST" class="flex items-center">
+            <input
+                type="text"
+                placeholder="Search..."
+                class="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
+            />
+        </form>
+
         @auth
             <div class="hidden sm:ml-6 sm:flex gap-2 sm:items-center">
                 <!-- Profile dropdown -->
@@ -27,9 +36,10 @@
                         aria-haspopup="true">
                         <span class="sr-only">Open user menu</span>
                         <img
-                            class="h-8 w-8 rounded-full"
+                            class="h-8 w-8 hidden rounded-full"
                             src="https://avatars.githubusercontent.com/u/831997"
                             alt="Ahmed Shamim Hasan Shaon" />
+                        <span class="w-8 h-8 border pt-1 rounded-full">{{strtoupper(substr($user->firstName,0,1) . substr($user->lastName,0,1))}}</span>
                         </button>
                     </div>
                 
@@ -141,16 +151,18 @@
                 <div class="flex items-center px-4">
                     <div class="flex-shrink-0">
                     <img
-                        class="h-10 w-10 rounded-full"
+                        class="h-10 w-10 hidden rounded-full"
                         src="https://avatars.githubusercontent.com/u/831997"
                         alt="Ahmed Shamim Hasan Shaon" />
+                    
+                        <span class="w-10 h-10 border pt-1 rounded-full">{{strtoupper(substr($user->firstName,0,1) . substr($user->lastName,0,1))}}</span>
                     </div>
                     <div class="ml-3">
                     <div class="text-base font-medium text-gray-800">
-                        {{ auth()->user()->firstName . ' ' . auth()->user()->lastName }}
+                        {{ $user->firstName . ' ' . $user->lastName }}
                     </div>
                     <div class="text-sm font-medium text-gray-500">
-                        {{ auth()->user()->email }}
+                        {{ $user->email }}
                     </div>
                     </div>
                 </div>

@@ -9,8 +9,18 @@
             <header>
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-                <!-- User Avatar -->
-                <!-- /User Avatar -->
+                    <!-- User Avatar -->
+                    <div class="flex-shrink-0">
+                        @if ($user->getFirstMediaUrl)
+                            <img
+                            class="h-10 w-10 rounded-full object-cover"
+                            src="https://avatars.githubusercontent.com/u/61485238"
+                            alt="{{ $post->user->firstName }}" />
+                        @else
+                            <span class="text-xl rounded-full">{{ substr($user->firstName, 0, 1) . substr($user->lastName, 0, 1)}}</span>
+                            @endif
+                    </div>
+                    <!-- /User Avatar -->
 
                 <!-- User Info -->
                 <div class="text-gray-900 flex flex-col min-w-0 flex-1">

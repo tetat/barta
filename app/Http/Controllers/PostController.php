@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,10 +16,8 @@ class PostController extends Controller
         ]);
 
         $validated['user_id'] = Auth::user()->id;
-        $validated['created_at'] = now();
-        $validated['updated_at'] = now();
 
-        if (DB::table('posts')->insert($validated)) {
+        if (Post::create($validated)) {
             return back()->withSuccess(
                 'Your post has been created successfully.'
             );
@@ -29,13 +28,11 @@ class PostController extends Controller
 
     public function edit(string $id)
     {
-        $post = DB::table('posts')
-            ->select('id', 'body', 'user_id', 'updated_at')
-            ->where('id', $id)
-            ->first();
+        $post = Post::find($id);
 
         return view('posts.edit', [
             'title' => 'Edit Post',
+            'user' => Auth::user(),
             'post' => $post
         ]);
     }
@@ -46,12 +43,9 @@ class PostController extends Controller
             'body' => 'required|min:10',
         ]);
 
-        $validated['updated_at'] = now();
-
-        if (DB::table('posts')
-            ->where('posts.id', $id)
-            ->where('posts.user_id', Auth::user()->id)
-            ->update($validated)) {
+        if (Post::where('id', $id)
+         ->where('user_id', Auth::user()->id)
+         ->update($validated)) {
             return back()->withSuccess(
                 'Your post has been updated successfully.'
             );
@@ -62,7 +56,9 @@ class PostController extends Controller
 
     public function destroy(string $id)
     {
-        if (DB::table('posts')->where('id', $id)->delete()) {
+        if (Post::where('id', $id)
+         ->where('user_id', Auth::user()->id)
+         ->delete()) {
             return back()->withSuccess(
                 'Your post has been deleted successfully.'
             );

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
+use App\Models\User;
 
 class RegisteredUserController extends Controller
 {
@@ -21,10 +22,8 @@ class RegisteredUserController extends Controller
         $user = $request->validated();
 
         $user['password'] = Hash::make($user['password']);
-        $user['created_at'] = now();
-        $user['updated_at'] = now();
 
-        if (DB::table('users')->insert($user)) {
+        if (User::create($user)) {
             return to_route('login')->withSuccess(
                 'Your account has been created successfully! Please login.'
             );
