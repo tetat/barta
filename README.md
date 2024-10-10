@@ -6,14 +6,14 @@ Barta is a minimalist social platform designed to bring people together through 
 
 ## Features for `assignment-2` branch
 
-- User registration
-- User login
-- User profile view
-- User profile update
-- Post create
-- Posts view
-- Post update
-- Post delete
+-   User registration
+-   User login
+-   User profile view
+-   User profile update
+-   Post create
+-   Posts view
+-   Post update
+-   Post delete
 
 ## Installation
 

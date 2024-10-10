@@ -16,7 +16,20 @@
         <!-- Profile Info -->
         <div
             class="flex gap-4 justify-center flex-col text-center items-center">
-
+            <!-- Avatar -->
+          <div class="relative">
+            @if ($user->getFirstMediaUrl('avatar'))
+                <img
+                    class="w-32 h-32 rounded-full border-2 border-gray-800"
+                    src="{{ asset(explode('localhost/', $user->getFirstMediaUrl('avatar'))[1]) }}"
+                    alt="{{ $user->firstName }}" />
+                <!-- <span class="bottom-2 right-4 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span> -->
+            @else
+                <p class="text-6xl text-center pt-7 italic h-32 w-32 border border-red-400 rounded-full">{{ substr($user->firstName, 0, 1) . substr($user->lastName, 0, 1)}}</p>
+            @endif
+           
+          </div>
+          <!-- /Avatar -->
             <!-- User Meta -->
             <div>
             <h1 class="font-bold md:text-2xl">{{ $user->firstName . ' ' . $user->lastName }}</h1>

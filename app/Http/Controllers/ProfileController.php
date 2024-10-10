@@ -7,7 +7,6 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use App\Services\PostService;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -18,7 +17,7 @@ class ProfileController extends Controller
         $posts = $postService->getUserPosts($user->id);
         
         return view('users.profile', [
-            'title' => $user->first_name . ' ' . $user->last_name,
+            'title' => $user->first_name,
             'user' => $user,
             'posts' => $posts
         ]);
@@ -38,21 +37,30 @@ class ProfileController extends Controller
     {
         $data = $request->validated();
 
-        unset($data['current_password']);
+        $user = User::findOrFail(Auth::user()->id);
 
-        if (!$data['password']) {
-            unset($data['password']);
-        } else {
-            $data['password'] = Hash::make($data['password']);
+        $user->firstName = $data['firstName'];
+        $user->lastName = $data['lastName'];
+        $user->email = $data['email'];
+        $user->gender = $data['gender'];
+        $user->bio = $data['bio'];
+        if ($data['password']) {
+            $user->password = Hash::make($data['password']);
+        }
+        if ($request->hasFile('avatar')) {
+            $user->addMedia($request->file('avatar'))
+                ->toMediaCollection('avatar');
         }
 
-        if (User::where('id', Auth::user()->id)
-            ->update($data)) {
-            return back()->withSuccess(
-                'Your account has been updated successfully.'
+        if (!$user->save()) {
+            return back()->withError(
+                'Update failed! Internal server error.'
             );
         }
 
-        return back()->withError('Update failed! Internal server error.');
+        return back()->withSuccess(
+            'Your account has been updated successfully.'
+        );
+
     }
 }

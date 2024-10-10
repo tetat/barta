@@ -32,6 +32,7 @@ class UserUpdateRequest extends FormRequest
             'password' => 'nullable|confirmed|min:8',
             'gender' => ['required', Rule::in(['male', 'female', 'other'])],
             'bio' => 'required|min:10',
+            'avatar' => 'sometimes|mimes:jpg,jpeg,png|max:2048'
         ];
     }
 }

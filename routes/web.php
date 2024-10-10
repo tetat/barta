@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
         ->name('users.show');
 
     Route::post('posts/store', [PostController::class, 'store'])->name('posts.store');
+    Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
     Route::middleware('authorizeOwnPost')->group(function () {
         Route::get('posts/{id}/edit', [PostController::class, 'edit'])
             ->name('posts.edit');

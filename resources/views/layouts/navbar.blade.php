@@ -12,11 +12,11 @@
         </div>
 
         <!-- Search input -->
-        <form action="" method="POST" class="flex items-center">
+        <form action="" method="POST" class="flex items-center justify-center">
             <input
                 type="text"
                 placeholder="Search..."
-                class="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
+                class="border-2 border-gray-300 bg-white w-40 md:w-64 h-8 md:h-10 px-4 md:px-5 pr-2 md:pr-10 rounded-full text-sm focus:outline-none"
             />
         </form>
 
@@ -35,11 +35,14 @@
                         aria-expanded="false"
                         aria-haspopup="true">
                         <span class="sr-only">Open user menu</span>
-                        <img
-                            class="h-8 w-8 hidden rounded-full"
-                            src="https://avatars.githubusercontent.com/u/831997"
-                            alt="Ahmed Shamim Hasan Shaon" />
-                        <span class="w-8 h-8 border pt-1 rounded-full">{{strtoupper(substr($user->firstName,0,1) . substr($user->lastName,0,1))}}</span>
+                        @if (auth()->user()->getFirstMediaUrl('avatar'))
+                            <img
+                                class="h-8 w-8 rounded-full object-cover"
+                                src="{{ asset(explode('localhost/', auth()->user()->getFirstMediaUrl('avatar'))[1]) }}"
+                                alt="{{ auth()->user()->firstName }}" />
+                        @else
+                            <p class="text-md text-center pt-1 italic h-8 w-8 border border-red-400 rounded-full">{{ substr(auth()->user()->firstName, 0, 1) . substr(auth()->user()->lastName, 0, 1)}}</p>
+                        @endif
                         </button>
                     </div>
                 
@@ -150,19 +153,21 @@
             @auth
                 <div class="flex items-center px-4">
                     <div class="flex-shrink-0">
-                    <img
-                        class="h-10 w-10 hidden rounded-full"
-                        src="https://avatars.githubusercontent.com/u/831997"
-                        alt="Ahmed Shamim Hasan Shaon" />
-                    
-                        <span class="w-10 h-10 border pt-1 rounded-full">{{strtoupper(substr($user->firstName,0,1) . substr($user->lastName,0,1))}}</span>
+                        @if (auth()->user()->getFirstMediaUrl('avatar'))
+                            <img
+                                class="h-8 w-8 rounded-full object-cover"
+                                src="{{ asset(explode('localhost/', auth()->user()->getFirstMediaUrl('avatar'))[1]) }}"
+                                alt="{{ auth()->user()->firstName }}" />
+                        @else
+                            <p class="text-md text-center pt-1 italic h-8 w-8 border border-red-400 rounded-full">{{ substr(auth()->user()->firstName, 0, 1) . substr(auth()->user()->lastName, 0, 1)}}</p>
+                        @endif
                     </div>
                     <div class="ml-3">
                     <div class="text-base font-medium text-gray-800">
-                        {{ $user->firstName . ' ' . $user->lastName }}
+                        {{ auth()->user()->firstName . ' ' . auth()->user()->lastName }}
                     </div>
                     <div class="text-sm font-medium text-gray-500">
-                        {{ $user->email }}
+                        {{ auth()->user()->email }}
                     </div>
                     </div>
                 </div>
