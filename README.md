@@ -4,16 +4,23 @@
 
 Barta is a minimalist social platform designed to bring people together through meaningful conversations and shared experiences. Whether you're looking to connect with friends, discover new communities, or express yourself creatively, Barta provides a space where everyone can engage, inspire, and be heard
 
-## Features for `assignment-2` branch
+## Features for `assignment-3` branch
+
+### Users
 
 -   User registration
 -   User login
 -   User profile view
 -   User profile update
--   Post create
--   Posts view
+-   Adding Profile Picture
+-   Search for a user
+
+### Posts
+
+-   Post create with image (optional)
+-   Posts view with image
 -   Post update
--   Post delete
+-   Post delete with image
 
 ## Installation
 
@@ -51,6 +58,12 @@ Run the database migrations (set the database connection in `.env` before migrat
 
 ```bash
 php artisan migrate
+```
+
+Symblink for uploaded images
+
+```bash
+php artisan storage:link
 ```
 
 Start the local development server:
