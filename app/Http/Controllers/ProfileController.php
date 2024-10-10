@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserUpdateRequest;
+use App\Models\Post;
 use App\Models\User;
-use App\Services\PostService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    public function show(PostService $postService)
+    public function show()
     {
         $user = Auth::user();
-        $posts = $postService->getUserPosts($user->id);
+        $posts = Post::where('user_id', $user->id)->paginate();
         
         return view('users.profile', [
             'title' => $user->first_name,

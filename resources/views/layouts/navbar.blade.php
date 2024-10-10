@@ -12,12 +12,20 @@
         </div>
 
         <!-- Search input -->
-        <form action="" method="POST" class="flex items-center justify-center">
+        <form action="{{ route('users.search') }}"
+            method="POST"
+            class="flex items-center justify-center">
+            @csrf
+            
             <input
                 type="text"
+                name="search"
                 placeholder="Search..."
                 class="border-2 border-gray-300 bg-white w-40 md:w-64 h-8 md:h-10 px-4 md:px-5 pr-2 md:pr-10 rounded-full text-sm focus:outline-none"
             />
+            @error('search')
+                <script> alert("{{$message}}") </script>
+            @enderror
         </form>
 
         @auth

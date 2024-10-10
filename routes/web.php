@@ -30,6 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/{id}', [UserController::class, 'show'])
         ->middleware('checkUserExists')
         ->name('users.show');
+    
+    Route::post('users/search', [UserController::class, 'search'])
+        ->name('users.search');
 
     Route::post('posts/store', [PostController::class, 'store'])->name('posts.store');
     Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
