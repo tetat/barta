@@ -14,7 +14,7 @@ class ProfileController extends Controller
     public function show()
     {
         $user = Auth::user();
-        $posts = Post::where('user_id', $user->id)->paginate();
+        $posts = Post::where('user_id', $user->id)->paginate(10);
         
         return view('users.profile', [
             'title' => $user->first_name,
